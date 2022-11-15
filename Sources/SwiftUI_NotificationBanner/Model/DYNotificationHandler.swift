@@ -10,6 +10,7 @@ import SwiftUI
 
 
 
+/// Notification Handler
 public class DYNotificationHandler: ObservableObject {
 
 
@@ -26,6 +27,8 @@ public class DYNotificationHandler: ObservableObject {
     }
     
     
+    /// show function
+    /// - Parameter notification: a DYNotificationHandler object
     public func show(notification: DYNotification) {
         self.feedbackGenerator.prepare()
         

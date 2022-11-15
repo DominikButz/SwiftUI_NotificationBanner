@@ -8,9 +8,9 @@
 import Foundation
 import SwiftUI
 
-public struct Shadow {
+internal struct Shadow {
     
-    public init(color: Color, radius: CGFloat, x: CGFloat, y: CGFloat) {
+    internal init(color: Color, radius: CGFloat, x: CGFloat, y: CGFloat) {
         self.color = color
         self.radius = radius
         self.x = x

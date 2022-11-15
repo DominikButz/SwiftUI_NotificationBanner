@@ -117,6 +117,8 @@ In the example project that is included in this package, I have adapted this sol
 
 ## Change log
 
+#### [Version 0.1.1](https://github.com/DominikButz/SwiftUI_NotificationBanner/releases/tag/0.1.1)
+Updated dropShadow modifier function and added documentation.
 
 #### [Version 0.1](https://github.com/DominikButz/SwiftUI_NotificationBanner/releases/tag/0.1)
 Initial public release.

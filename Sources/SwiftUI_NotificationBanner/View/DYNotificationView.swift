@@ -19,6 +19,10 @@ public struct DYNotificationView: View {
     
     let bottomSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0
     
+    /// intialiser of DYNotificationView
+    /// - Parameters:
+    ///   - notification: the current notification to be displayed as banner
+    ///   - frameWidth: width of the banner frame
     public init(notification: DYNotification, frameWidth: CGFloat) {
   
         self.notification = notification
@@ -70,6 +74,12 @@ public struct DYNotificationView: View {
 
 public extension View where Self == DYNotificationView {
     
+    /// banner text modifier function
+    /// - Parameters:
+    ///   - titleFont: font of the title label
+    ///   - messageFont: font of the message body label
+    ///   - color: text color of title and message labels
+    /// - Returns: modified DYNotificationView
     func text(titleFont: Font = .headline, messageFont: Font = .body, color: Color = .primary)->DYNotificationView {
         
         var modView = self
@@ -80,6 +90,14 @@ public extension View where Self == DYNotificationView {
         
     }
     
+    /// banner image modifier function
+    /// - Parameters:
+    ///   - maxHeight: max frame height of the image
+    ///   - maxWidth: max frame width of the image
+    ///   - contentMode: image content mode
+    ///   - renderingMode: image rendering mode - original or template
+    ///   - color: foreground color of the image (if rendering mode is template)
+    /// - Returns: modified DYNotificationView
     func image(maxHeight: CGFloat? = 40, maxWidth: CGFloat? = 40, contentMode: ContentMode = .fit, renderingMode: Image.TemplateRenderingMode = .template, color: Color? = .primary)->DYNotificationView {
         var modView = self
         modView.settings.imageMaxWidth = maxWidth
@@ -90,6 +108,13 @@ public extension View where Self == DYNotificationView {
         return modView
     }
     
+    /// banner background color gradient modifier function
+    /// - Parameters:
+    ///   - info: gradient of an info type banner
+    ///   - success: gradient of a success type banner
+    ///   - warning: gradient of ar warning type banner
+    ///   - error: gradient of an error type banner
+    /// - Returns: modified DYNotificationView
     func backgroundGradientForNotificationType(info: LinearGradient = LinearGradient(colors: [.blue], startPoint: .top, endPoint: .bottom), success: LinearGradient = LinearGradient(colors: [.green], startPoint: .top, endPoint: .bottom), warning: LinearGradient = LinearGradient(colors: [.yellow], startPoint: .top, endPoint: .bottom), error: LinearGradient = LinearGradient(colors: [.red], startPoint: .top, endPoint: .bottom))-> DYNotificationView {
         
         var modView = self
@@ -101,13 +126,28 @@ public extension View where Self == DYNotificationView {
         
     }
     
+    /// corner radius of the banner background
+    /// - Parameter radius: corner radius - applies to the bottom corners if displayEdge is top, otherwise radius is applied to the two top corners.
+    /// - Returns: modified DYNotificationView
     func cornerRadius(_ radius: CGFloat = 0)->DYNotificationView {
         var modView = self
         modView.settings.cornerRadius = radius
         return modView
     }
     
-    func dropShadow(_ shadow: Shadow? = nil)->DYNotificationView {
+    
+    /// drop shadow of the banner background
+    /// - Parameters:
+    ///   - color: shadow color. Default is clear (= no shadow)
+    ///   - radius: radius of the shadow
+    ///   - x: x offset
+    ///   - y: y offset
+    /// - Returns: modified DYNotificationView
+    func dropShadow(color: Color = .clear, radius: CGFloat = 5, x: CGFloat = 0, y: CGFloat = 5)->DYNotificationView {
+        var shadow: Shadow?
+        if color != .clear {
+            shadow = Shadow(color: color, radius: radius, x: x, y: y)
+        }
         var modView = self
         modView.settings.dropShadow = shadow
         return modView
