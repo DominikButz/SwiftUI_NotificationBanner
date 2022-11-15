@@ -19,7 +19,7 @@ To use the notificationBanner-modifier and DYNotificationHandler, import SwiftUI
 
 ![Example](https://raw.githubusercontent.com/DominikButz/gitResources/main/SwiftUI_NotificationBanner/NotificationBannerExample01.gif)  
 
-As shown below in DYNotificationView can be modified easily by applying multiple modifiers.
+As shown below in the code example DYNotificationView can be modified easily by applying multiple modifiers.
 Here is a complete list including the given default values:
 
 * text(titleFont: Font = .headline, messageFont: Font = .body, color: Color = .primary)
