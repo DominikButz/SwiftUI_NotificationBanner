@@ -26,7 +26,7 @@ Here is a complete list including the given default values:
 * image(maxHeight: CGFloat? = 40, maxWidth: CGFloat? = 40, contentMode: ContentMode = .fit, renderingMode: Image.TemplateRenderingMode = .template, color: Color? = .primary)
 * backgroundGradientForNotificationType(info: LinearGradient = LinearGradient(colors: [.blue], startPoint: .top, endPoint: .bottom), success: LinearGradient = LinearGradient(colors: [.green], startPoint: .top, endPoint: .bottom), warning: LinearGradient = LinearGradient(colors: [.yellow], startPoint: .top, endPoint: .bottom), error: LinearGradient = LinearGradient(colors: [.red], startPoint: .top, endPoint: .bottom))
 * cornerRadius(_ radius: CGFloat = 0)
-* dropShadow(_ shadow: Shadow? = nil)
+* dropShadow(color: Color = .clear, radius: CGFloat = 5, x: CGFloat = 0, y: CGFloat = 5)
 
 
 
