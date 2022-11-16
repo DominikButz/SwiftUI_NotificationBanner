@@ -17,7 +17,10 @@ To use the notificationBanner-modifier and DYNotificationHandler, import SwiftUI
 
 ### Basics
 
-![Example](https://raw.githubusercontent.com/DominikButz/gitResources/main/SwiftUI_NotificationBanner/NotificationBannerExample01.gif)  
+<!--![Example](https://raw.githubusercontent.com/DominikButz/gitResources/main/SwiftUI_NotificationBanner/NotificationBannerExample01.mp4) -->
+
+<video height=700px src="https://raw.githubusercontent.com/DominikButz/gitResources/main/SwiftUI_NotificationBanner/NotificationBannerExample01.mp4"> </video>
+ 
 
 As shown below in the code example DYNotificationView can be modified easily by applying multiple modifiers.
 Here is a complete list including the given default values:
@@ -95,7 +98,7 @@ Check out the included example project for details.
 
 ### Advanced Implementation: the Sheet-Problem
 
-But wait a minute, you might object: The gif above shows that the notification banner is displayed above a sheet, however, that is impossible because SwiftUI sheets as well fullScreenCovers are always presented as topmost views! So is this some kind of black magic?
+But wait a minute, you might object: The video above shows that the notification banner is displayed above a sheet, however, that is impossible because SwiftUI sheets as well fullScreenCovers are always presented as topmost views! So is this some kind of black magic?
 
 The sad truth is that with just one app window, a sheet and full screen cover will indeed always be shown on top, so unfortunately, any notification banner will be covered without mercy... 
 
