@@ -19,7 +19,7 @@ To use the notificationBanner-modifier and DYNotificationHandler, import SwiftUI
 
 <!--![Example](https://raw.githubusercontent.com/DominikButz/gitResources/main/SwiftUI_NotificationBanner/NotificationBannerExample01.mp4) -->
 
-<video height=700px src="https://raw.githubusercontent.com/DominikButz/gitResources/main/SwiftUI_NotificationBanner/NotificationBannerExample01.mp4"> </video>
+<video height="700" controls><source src="https://raw.githubusercontent.com/DominikButz/gitResources/main/SwiftUI_NotificationBanner/NotificationBannerExample01.mp4" type="video/mp4"> </video>
  
 
 As shown below in the code example DYNotificationView can be modified easily by applying multiple modifiers.
