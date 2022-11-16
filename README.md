@@ -118,5 +118,5 @@ dominikbutz@gmail.com
 
 ## License
 
-SwiftUIGraphs is available under the MIT license. See the LICENSE file for more info.
+SwiftUI NotificationBanner is available under the MIT license. See the LICENSE file for more info.
 
