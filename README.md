@@ -17,7 +17,7 @@ To use the notificationBanner-modifier and DYNotificationHandler, import SwiftUI
 
 ### Basics
 
-![Example](https://raw.githubusercontent.com/DominikButz/gitResources/main/SwiftUI_NotificationBanner/NotificationBannerExample01.mp4)
+![Example](https://raw.githubusercontent.com/DominikButz/gitResources/main/SwiftUI_NotificationBanner/NotificationBannerExample01.gif)
 
 
 As shown below in the code example DYNotificationView can be modified easily by applying multiple modifiers.
