@@ -48,7 +48,7 @@ struct RootView: View {
                   .text(color: notification.type == .info || notification.type == .error ? .white : .primary)
                   .image(color: notification.type == .info || notification.type == .error ? .white : .primary)
 //                  .backgroundGradientForNotificationType(success: LinearGradient(colors: [.green.opacity(0.4), .green], startPoint: .leading, endPoint: .trailing), error: LinearGradient(colors: [.red, .red.opacity(0.3)], startPoint: .top, endPoint: .bottom))
-                  .dropShadow(self.shadowFor(displayEdge: notification.displayEdge))
+                  .dropShadow(color: self.colorScheme == .light ? .gray.opacity(0.4) : .clear, radius: 5, x: 0, y: notification.displayEdge == .top ? 5 : -5)
                   .cornerRadius(self.cornerRadius)
               
           })
@@ -56,17 +56,6 @@ struct RootView: View {
     }
     
     
-    func shadowFor(displayEdge: Edge)->Shadow? {
-        
-        let y:CGFloat = displayEdge == .top ? 5 : -5
-        
-        if self.colorScheme == .light {
-            return Shadow(color: .gray.opacity(0.4), radius: 5, x: 0, y: y)
-        }
-        
-        return nil
-        
-    }
     
     var cornerRadius: CGFloat {
         guard UIDevice.current.userInterfaceIdiom == .phone else {
