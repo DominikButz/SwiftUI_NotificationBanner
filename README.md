@@ -1,17 +1,17 @@
-# SwiftUI Notification Banner (v0.1)
+# SwiftUI Notification Banner (v0.2)
 
 ## Features
 
 Finally a native SwiftUI notification banner package! With SwiftUI Notification Banner it is super-easy to display in-app notifications.
 
-* Attach a notificationBanner-modifier to the top view in your view hierarchy to make sure it will always appear on top
-* The notificationView closure is agnostic to what kind of View you pass in - you can use the default DYNotificationView or simply create your own banner view!
+* Attach a notificationView-modifier to the top view in your view hierarchy to make sure it will always appear on top
+* The notificationBanner closure is agnostic to what kind of View you pass in - you can use the default DYNotificationBanner or simply create your own banner view!
 * Check out the code example below and the example project included in this package for more details.
 
 ## Installation
 
 Simply copy the github link of this project into the Swift Package Manager and install it. Don't forget to add the library to your target. 
-To use the notificationBanner-modifier and DYNotificationHandler, import SwiftUI_NotificationBanner. 
+To use the notificationView-modifier, DYNotificationBanner and DYNotificationHandler, import SwiftUI_NotificationBanner. 
 
 ## Code Example
 
@@ -20,7 +20,7 @@ To use the notificationBanner-modifier and DYNotificationHandler, import SwiftUI
 ![Example](https://raw.githubusercontent.com/DominikButz/gitResources/main/SwiftUI_NotificationBanner/NotificationBannerExample01.gif)
 
 
-As shown below in the code example DYNotificationView can be modified easily by applying multiple modifiers.
+As shown below in the code example DYNotificationBanner can be modified easily by applying multiple modifiers.
 Here is a complete list including the given default values:
 
 * text(titleFont: Font = .headline, messageFont: Font = .body, color: Color = .primary)
@@ -43,12 +43,13 @@ struct RootView: View {
     
     var body: some View {
         // your root view content
-          .notificationBanner(handler: notificationHandler, notificationView: {notification in
+          .notificationView(handler: notificationHandler, notificationBanner: {notification in
               
-              DYNotificationView(notification: notification, frameWidth: min(450, UIScreen.main.bounds.size.width))
+              DYNotificationBanner(notification: notification, frameWidth: min(450, UIScreen.main.bounds.size.width))
                   .text(color: notification.type == .info || notification.type == .error ? .white : .primary)
                   .image(color: notification.type == .info || notification.type == .error ? .white : .primary)
-//                  .backgroundGradientForNotificationType(success: LinearGradient(colors: [.green.opacity(0.4), .green], startPoint: .leading, endPoint: .trailing), error: LinearGradient(colors: [.red, .red.opacity(0.3)], startPoint: .top, endPoint: .bottom))
+//change the default colors to create an actual gradient background:               
+// .backgroundGradientForNotificationType(success: LinearGradient(colors: [.green.opacity(0.4), .green], startPoint: .leading, endPoint: .trailing), error: LinearGradient(colors: [.red, .red.opacity(0.3)], startPoint: .top, endPoint: .bottom))
                   .dropShadow(color: self.colorScheme == .light ? .gray.opacity(0.4) : .clear, radius: 5, x: 0, y: notification.displayEdge == .top ? 5 : -5)
                   .cornerRadius(self.cornerRadius)
               
@@ -81,7 +82,7 @@ message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmo
 image: Image(systemName: "checkmark.seal.fill"),
  type: .info, displayDuration: 3, 
  dismissOnTap: true, 
- hapticFeedbackType: .success, 
+ hapticFeedbackType: .info, 
  tapHandler: {
       print("info banner tapped")
 }))
@@ -106,6 +107,9 @@ In the example project that is included in this package, I have adapted this sol
 
 
 ## Change log
+
+#### [Version 0.2](https://github.com/DominikButz/SwiftUI_NotificationBanner/releases/tag/0.2)
+Renamed the modifier to notificationView and the default banner view to DYNotificationBanner. Updated cornerRadius logic for leading and trailing display edge. 
 
 #### [Version 0.1.1](https://github.com/DominikButz/SwiftUI_NotificationBanner/releases/tag/0.1.1)
 Updated dropShadow modifier function and added documentation.

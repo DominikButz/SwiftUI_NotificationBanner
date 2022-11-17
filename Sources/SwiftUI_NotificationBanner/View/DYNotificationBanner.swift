@@ -8,18 +8,18 @@
 import Foundation
 import SwiftUI
 
-public struct DYNotificationView: View {
+public struct DYNotificationBanner: View {
     
 //    @Environment(\.colorScheme) var colorScheme
     var notification: DYNotification
-    var settings: DYNotificationViewSettings = DYNotificationViewSettings()
+    var settings: DYNotificationBannerSettings = DYNotificationBannerSettings()
     let frameWidth: CGFloat
     
     let topSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0
     
     let bottomSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0
     
-    /// intialiser of DYNotificationView
+    /// intialiser of DYNotificationBanner
     /// - Parameters:
     ///   - notification: the current notification to be displayed as banner
     ///   - frameWidth: width of the banner frame
@@ -62,8 +62,8 @@ public struct DYNotificationView: View {
     
     var backgroundShape: some Shape {
         
-        let topCorner: CGFloat = notification.displayEdge == .top ? 0 : settings.cornerRadius
-        let bottomCorner: CGFloat = notification.displayEdge == .top ? settings.cornerRadius : 0
+        let topCorner: CGFloat = notification.displayEdge != .top ? settings.cornerRadius :  0
+        let bottomCorner: CGFloat = notification.displayEdge != .bottom ? settings.cornerRadius : 0
         
         return RoundedCornerRectangle(tl: topCorner, tr: topCorner, bl: bottomCorner, br: bottomCorner)
     }
@@ -72,15 +72,15 @@ public struct DYNotificationView: View {
     
 }
 
-public extension View where Self == DYNotificationView {
+public extension View where Self == DYNotificationBanner {
     
     /// banner text modifier function
     /// - Parameters:
     ///   - titleFont: font of the title label
     ///   - messageFont: font of the message body label
     ///   - color: text color of title and message labels
-    /// - Returns: modified DYNotificationView
-    func text(titleFont: Font = .headline, messageFont: Font = .body, color: Color = .primary)->DYNotificationView {
+    /// - Returns: modified DYNotificationBanner
+    func text(titleFont: Font = .headline, messageFont: Font = .body, color: Color = .primary)->DYNotificationBanner {
         
         var modView = self
         modView.settings.titleFont = titleFont
@@ -97,8 +97,8 @@ public extension View where Self == DYNotificationView {
     ///   - contentMode: image content mode
     ///   - renderingMode: image rendering mode - original or template
     ///   - color: foreground color of the image (if rendering mode is template)
-    /// - Returns: modified DYNotificationView
-    func image(maxHeight: CGFloat? = 40, maxWidth: CGFloat? = 40, contentMode: ContentMode = .fit, renderingMode: Image.TemplateRenderingMode = .template, color: Color? = .primary)->DYNotificationView {
+    /// - Returns: modified DYNotificationBanner
+    func image(maxHeight: CGFloat? = 40, maxWidth: CGFloat? = 40, contentMode: ContentMode = .fit, renderingMode: Image.TemplateRenderingMode = .template, color: Color? = .primary)->DYNotificationBanner {
         var modView = self
         modView.settings.imageMaxWidth = maxWidth
         modView.settings.imageMaxHeight = maxHeight
@@ -114,8 +114,8 @@ public extension View where Self == DYNotificationView {
     ///   - success: gradient of a success type banner
     ///   - warning: gradient of ar warning type banner
     ///   - error: gradient of an error type banner
-    /// - Returns: modified DYNotificationView
-    func backgroundGradientForNotificationType(info: LinearGradient = LinearGradient(colors: [.blue], startPoint: .top, endPoint: .bottom), success: LinearGradient = LinearGradient(colors: [.green], startPoint: .top, endPoint: .bottom), warning: LinearGradient = LinearGradient(colors: [.yellow], startPoint: .top, endPoint: .bottom), error: LinearGradient = LinearGradient(colors: [.red], startPoint: .top, endPoint: .bottom))-> DYNotificationView {
+    /// - Returns: modified DYNotificationBanner
+    func backgroundGradientForNotificationType(info: LinearGradient = LinearGradient(colors: [.blue], startPoint: .top, endPoint: .bottom), success: LinearGradient = LinearGradient(colors: [.green], startPoint: .top, endPoint: .bottom), warning: LinearGradient = LinearGradient(colors: [.yellow], startPoint: .top, endPoint: .bottom), error: LinearGradient = LinearGradient(colors: [.red], startPoint: .top, endPoint: .bottom))-> DYNotificationBanner {
         
         var modView = self
         modView.settings.infoBannerBackgroundGradient = info
@@ -128,8 +128,8 @@ public extension View where Self == DYNotificationView {
     
     /// corner radius of the banner background
     /// - Parameter radius: corner radius - applies to the bottom corners if displayEdge is top, otherwise radius is applied to the two top corners.
-    /// - Returns: modified DYNotificationView
-    func cornerRadius(_ radius: CGFloat = 0)->DYNotificationView {
+    /// - Returns: modified DYNotificationBanner
+    func cornerRadius(_ radius: CGFloat = 0)->DYNotificationBanner {
         var modView = self
         modView.settings.cornerRadius = radius
         return modView
@@ -142,8 +142,8 @@ public extension View where Self == DYNotificationView {
     ///   - radius: radius of the shadow
     ///   - x: x offset
     ///   - y: y offset
-    /// - Returns: modified DYNotificationView
-    func dropShadow(color: Color = .clear, radius: CGFloat = 5, x: CGFloat = 0, y: CGFloat = 5)->DYNotificationView {
+    /// - Returns: modified DYNotificationBanner
+    func dropShadow(color: Color = .clear, radius: CGFloat = 5, x: CGFloat = 0, y: CGFloat = 5)->DYNotificationBanner {
         var shadow: Shadow?
         if color != .clear {
             shadow = Shadow(color: color, radius: radius, x: x, y: y)
@@ -157,12 +157,12 @@ public extension View where Self == DYNotificationView {
     
 }
 
-struct DYNotificationView_Previews: PreviewProvider {
+struct DYNotificationBanner_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader { proxy in
             VStack {
                 
-                DYNotificationView(notification: DYNotification(title: "Cool Lorem Ipsum", message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", image: Image(systemName: "checkmark.circle"), displayEdge: .top), frameWidth: min(450, proxy.size.width))
+                DYNotificationBanner(notification: DYNotification(title: "Cool Lorem Ipsum", message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", image: Image(systemName: "checkmark.circle"), displayEdge: .top), frameWidth: min(450, proxy.size.width))
                     
             }
             .edgesIgnoringSafeArea(.all)

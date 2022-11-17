@@ -15,21 +15,33 @@ struct NotificationRootView: View {
     var body: some View {
         Color.clear
           .ignoresSafeArea(.all)
-          .notificationBanner(handler: notificationHandler, notificationView: {notification in
+          .notificationView(handler: notificationHandler, notificationBanner: {notification in
               
-              DYNotificationView(notification: notification, frameWidth: min(450, UIScreen.main.bounds.size.width))
-                  .text(color: notification.type == .info || notification.type == .error ? .white : .primary)
-                  .image(color: notification.type == .info || notification.type == .error ? .white : .primary)
+              DYNotificationBanner(notification: notification, frameWidth: min(450, UIScreen.main.bounds.size.width))
+                  .text(color: foregroundColorForNotification(type: notification.type))
+                  .image(color: foregroundColorForNotification(type: notification.type))
 //                  .backgroundGradientForNotificationType(success: LinearGradient(colors: [.green.opacity(0.4), .green], startPoint: .leading, endPoint: .trailing), error: LinearGradient(colors: [.red, .red.opacity(0.3)], startPoint: .top, endPoint: .bottom))
                   .dropShadow(color: colorScheme == .light ? .gray.opacity(0.4) : .clear, radius: 5, x: 0, y: notification.displayEdge == .top ? 5 : -5)
-                  .cornerRadius(self.cornerRadius)
+                  .cornerRadius(self.cornerRadius(displayEdge: notification.displayEdge))
               
           }).statusBarHidden(notificationHandler.currentNotification?.displayEdge == .top)
          
     }
+    
+    func foregroundColorForNotification(type: DYNotificationType)->Color {
+        switch type {
+        case .info, .error:
+            return .white
+        case .warning, .success:
+            return .black
+        }
+    }
 
     
-    var cornerRadius: CGFloat {
+    func cornerRadius(displayEdge: Edge)-> CGFloat {
+        guard displayEdge != .leading && displayEdge != .trailing else {
+            return UIDevice.current.userInterfaceIdiom == .phone ? 5 : 10
+        }
         guard UIDevice.current.userInterfaceIdiom == .phone else {
             return 10
         }

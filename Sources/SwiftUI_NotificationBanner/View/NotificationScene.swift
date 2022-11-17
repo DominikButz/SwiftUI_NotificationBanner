@@ -55,14 +55,14 @@ internal struct NotificationScene<N: View>: ViewModifier {
 
 public extension View {
     
-    /// notificationBanner modifier function
+    /// notificationView modifier function
     /// - Parameters:
     ///   - handler: a DYNotificationHandler object
     ///   - animation: appear animation of the notfification banner
     ///   - notificationView: notificationView closue - return a DYNotificationView or a custom view.
     /// - Returns: some View
-    func notificationBanner<N: View>(handler: DYNotificationHandler, animation: Animation = .easeInOut(duration: 0.5), notificationView: @escaping (DYNotification)->N)->some View {
-        self.modifier(NotificationScene(notificationHandler: handler, animation: animation, notificationView:  notificationView))
+    func notificationView<N: View>(handler: DYNotificationHandler, animation: Animation = .easeInOut(duration: 0.5), notificationBanner: @escaping (DYNotification)->N)->some View {
+        self.modifier(NotificationScene(notificationHandler: handler, animation: animation, notificationView:  notificationBanner))
     }
     
 }

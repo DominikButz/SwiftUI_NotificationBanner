@@ -22,7 +22,7 @@ public struct Example: View {
                 Spacer()
 
                 Button(action: {
-                    notificationHandler.show(notification: DYNotification(title: "Warm reminder", message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", image: Image(systemName: "checkmark.seal.fill"), type: .info, displayDuration: 3, dismissOnTap: true, hapticFeedbackType: .success, tapHandler: {
+                    notificationHandler.show(notification: DYNotification(title: "Warm reminder", message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", image: Image(systemName: "checkmark.seal.fill"), type: .info, displayDuration: 3, dismissOnTap: true, displayEdge: .leading, hapticFeedbackType: .success, tapHandler: {
                         print("info banner tapped")
                     }))
                 }, label: {
@@ -30,7 +30,7 @@ public struct Example: View {
                 }).foregroundColor(.blue)
                 
                 Button(action: {
-                    notificationHandler.show(notification: DYNotification(message: "Running out of time!", type: .warning, displayDuration: 3, dismissOnTap: true, displayEdge: .top , hapticFeedbackType: .warning, tapHandler: {
+                    notificationHandler.show(notification: DYNotification(message: "Running out of time!", type: .warning, displayDuration: 3, dismissOnTap: true, displayEdge: .top, hapticFeedbackType: .warning, tapHandler: {
                         print("warning banner tapped")
                     }))
                 }, label: {
