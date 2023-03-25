@@ -16,7 +16,6 @@ struct RootView: View {
         Example().environmentObject(notificationHandler)
         .onAppear {
             sceneDelegate.notificationHandler = notificationHandler
-             
         }
     }
 }

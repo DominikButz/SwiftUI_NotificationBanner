@@ -10,8 +10,16 @@ Finally a native SwiftUI notification banner package! With SwiftUI Notification 
 
 ## Installation
 
+### Swift Package Manager
 Simply copy the github link of this project into the Swift Package Manager and install it. Don't forget to add the library to your target. 
 To use the notificationView-modifier, DYNotificationBanner and DYNotificationHandler, import SwiftUI_NotificationBanner. 
+
+### Cocoapods
+platform :ios, '14.0'
+
+target '[project name]' do
+     pod 'SwiftUI_NotificationBanner'
+end
 
 ## Code Example
 
