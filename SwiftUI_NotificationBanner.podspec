@@ -8,12 +8,12 @@
 Pod::Spec.new do |s|
   s.name             = 'SwiftUI_NotificationBanner'
   s.version          = '0.2'
-  s.summary          = 'Finally a native SwiftUI notification banner package! With SwiftUI Notification Banner it is super-easy to display in-app notifications.'
+  s.summary          = 'With SwiftUI Notification Banner it is super-easy to display in-app notifications.'
   s.swift_version = '5.1'
 
 
   s.description      = <<-DESC
-        With SwiftUI Notification Banner it is super-easy to display in-app notifications.
+          Finally a native SwiftUI notification banner package! With SwiftUI Notification Banner it is super-easy to display in-app notifications.
                        DESC
 
   s.homepage    = 'https://github.com/DominikButz/SwiftUI_NotificationBanner'
