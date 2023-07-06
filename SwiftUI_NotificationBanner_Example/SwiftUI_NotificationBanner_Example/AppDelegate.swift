@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+#if os(iOS)
 class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
     // not required in this example
 //      func application(
@@ -28,3 +29,4 @@ class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
       return sceneConfig
     }
 }
+#endif

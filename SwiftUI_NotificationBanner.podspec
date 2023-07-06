@@ -7,7 +7,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SwiftUI_NotificationBanner'
-  s.version          = '0.2'
+  s.version          = '0.3'
   s.summary          = 'With SwiftUI Notification Banner it is super-easy to display in-app notifications.'
   s.swift_version = '5.1'
 
@@ -24,9 +24,10 @@ Pod::Spec.new do |s|
  s.platform           = :ios
  s.ios.deployment_target = '14.0'
 
+s.platform          = :macos
+s.macos.deployment_target = '11.0'
 
   s.source_files = 'Sources/**/*'
-  #s.exclude_files = 'MinimizableView /**/*.plist'
 
 
   # s.public_header_files = 'SwiftUI_NotificationBanner/**/*.h'

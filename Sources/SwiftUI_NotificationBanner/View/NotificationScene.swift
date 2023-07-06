@@ -28,7 +28,7 @@ internal struct NotificationScene<N: View>: ViewModifier {
                             self.notificationView(notification)
                                 .onTapGesture {
                                     if notification.dismissOnTap {
-                                        self.notificationHandler.remove(notification: notification) // remove the current notfication
+                                        self.notificationHandler.remove(notification: notification, userInitiated: true) // remove the current notfication, initiated by user
                                     }
                                     notification.tapHandler?()
                                 }

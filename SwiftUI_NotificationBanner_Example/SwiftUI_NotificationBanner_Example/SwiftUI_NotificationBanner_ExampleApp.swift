@@ -12,13 +12,14 @@ import SwiftUI_NotificationBanner
 struct SwiftUI_NotificationBanner_ExampleApp: App {
     
     @StateObject var notificationHandler = DYNotificationHandler()
-    
+
     @UIApplicationDelegateAdaptor var delegate: AppDelegate
 
     var body: some Scene {
         WindowGroup {
-            RootView().environmentObject(notificationHandler)  
+            RootView().environmentObject(notificationHandler)
         }
+
 
     }
 }

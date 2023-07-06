@@ -13,48 +13,77 @@ import SwiftUI
 /// Notification Handler
 public class DYNotificationHandler: ObservableObject {
 
-
+    #if os(iOS)
     let feedbackGenerator: UINotificationFeedbackGenerator
+    #endif
+    let queue: OperationQueue
     
-    let queue = DispatchQueue(label: "com.DYNotificationBanner.dispatch.serial")
+    var queuedOperations: [String: Operation ] = [:]
     
     @Published public var currentNotification: DYNotification?
     
     public init() {
-
+        
+        self.queue = OperationQueue()
+        self.queue.maxConcurrentOperationCount = 1
+        self.queue.qualityOfService = .userInteractive
+        
+        #if os(iOS)
         self.feedbackGenerator = UINotificationFeedbackGenerator()
-    
+        #endif
+        
+        
     }
     
     
     /// show function
     /// - Parameter notification: a DYNotificationHandler object
     public func show(notification: DYNotification) {
+        #if os(iOS)
         self.feedbackGenerator.prepare()
+        #endif
         
-        queue.async {
-     
+        let operation = BlockOperation()
+        
+        operation.addExecutionBlock {
             DispatchQueue.main.async {
                 self.currentNotification = notification
+                #if os(iOS)
                 if let hapticFeedbackType = self.currentNotification?.hapticFeedbackType {
                     self.feedbackGenerator.notificationOccurred(hapticFeedbackType)
                 }
+                #endif
             }
-            Thread.sleep(forTimeInterval: notification.displayDuration)
-            DispatchQueue.main.async {
-                self.remove(notification: notification)
+            if operation.isCancelled == false {
+                Thread.sleep(forTimeInterval: notification.displayDuration)
             }
-          
-            Thread.sleep(forTimeInterval: 1.1) // to allow the banner to disappear before next one appears
+            
+            if operation.isCancelled == false {
+                DispatchQueue.main.async {
+                    self.remove(notification: notification)
+                }
+        
+                Thread.sleep(forTimeInterval: 1.1) // to allow the banner to disappear before next one appears
+            }
         }
+        
+        self.queuedOperations[notification.id] = operation
+        self.queue.addOperation(operation)
         
         
     }
     
-    func remove(notification: DYNotification) {
+    func remove(notification: DYNotification, userInitiated: Bool = false) {
         if self.currentNotification == notification {
             self.currentNotification = nil
         }
+
+        if let operation = self.queuedOperations.removeValue(forKey: notification.id) as? BlockOperation {
+            if userInitiated {
+                operation.cancel()
+            }
+        }
+ 
     }
     
 }

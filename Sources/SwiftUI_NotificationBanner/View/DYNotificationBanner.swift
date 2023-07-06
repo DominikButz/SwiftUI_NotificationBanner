@@ -15,9 +15,13 @@ public struct DYNotificationBanner: View {
     var settings: DYNotificationBannerSettings = DYNotificationBannerSettings()
     let frameWidth: CGFloat
     
+    #if os(iOS)
     let topSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0
-    
     let bottomSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0
+    #else
+    let topSafeArea: CGFloat = NSApplication.shared.windows.first?.contentView?.safeAreaInsets.top ?? 0
+    let bottomSafeArea: CGFloat = NSApplication.shared.windows.first?.contentView?.safeAreaInsets.bottom ?? 0
+    #endif
     
     /// intialiser of DYNotificationBanner
     /// - Parameters:
@@ -30,34 +34,32 @@ public struct DYNotificationBanner: View {
     }
     
     public var body: some View {
-
-                HStack(spacing: 5) {
+ 
+            HStack(spacing: 5) {
+                
+                Spacer()
+                
+                if let image = notification.image {
+                    image.renderingMode(settings.imageRenderingMode).resizable().aspectRatio(contentMode: settings.imageContentMode).frame(maxWidth: settings.imageMaxWidth, maxHeight: settings.imageMaxHeight).foregroundColor(settings.imageColor).padding(.horizontal, 10)
                     
-                    Spacer()
-                    
-                    if let image = notification.image {
-                        image.renderingMode(settings.imageRenderingMode).resizable().aspectRatio(contentMode: settings.imageContentMode).frame(maxWidth: settings.imageMaxWidth, maxHeight: settings.imageMaxHeight).foregroundColor(settings.imageColor).padding(.horizontal, 10)
-
+                }
+                VStack(alignment: .leading, spacing:5) {
+                    if let title = notification.title {
+                        Text(title).font(settings.titleFont)
                     }
-                    VStack(alignment: .leading, spacing:5) {
-                        if let title = notification.title {
-                            Text(title).font(settings.titleFont)
-                        }
-                        Text(notification.message).font(settings.messageFont).fixedSize(horizontal: false, vertical: true)
-                    }.foregroundColor(settings.textColor)
-                    
-
-                    Spacer()
-          
-                    
-                }.padding(.top, notification.displayEdge == .top ?  topSafeArea : 5)
+                    Text(notification.message).font(settings.messageFont).fixedSize(horizontal: false, vertical: true)
+                }.foregroundColor(settings.textColor)
+                
+                Spacer()
+                
+            }.padding(.top, notification.displayEdge == .top ?  topSafeArea : 5)
                 .padding(.bottom, notification.displayEdge == .bottom ?  bottomSafeArea : 5)
-                    .padding(8)
-                    .frame(width: frameWidth)
-                    .background(settings.gradientFor(notificationType: notification.type))
-                    .clipShape(backgroundShape)
-                    .shadow(color: settings.dropShadow?.color ?? .clear, radius: settings.dropShadow?.radius ?? 0, x: settings.dropShadow?.x ?? 0, y: settings.dropShadow?.y ?? 0)
-
+                .padding(8)
+                .frame(width: frameWidth)
+                .background(settings.gradientFor(notificationType: notification.type))
+                .clipShape(backgroundShape)
+                .shadow(color: settings.dropShadow?.color ?? .clear, radius: settings.dropShadow?.radius ?? 0, x: settings.dropShadow?.x ?? 0, y: settings.dropShadow?.y ?? 0)
+        
     }
     
     var backgroundShape: some Shape {
@@ -170,7 +172,12 @@ struct DYNotificationBanner_Previews: PreviewProvider {
     }
 }
 
-
-
+#if canImport(AppKit)
+extension NSWindow {
+    var titlebarHeight: CGFloat {
+        frame.height - contentRect(forFrameRect: frame).height
+    }
+}
+#endif
 
 

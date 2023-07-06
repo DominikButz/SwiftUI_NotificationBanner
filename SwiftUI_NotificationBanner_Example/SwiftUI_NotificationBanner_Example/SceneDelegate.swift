@@ -5,9 +5,11 @@
 //  Created by Dominik Butz on 14/11/2022.
 //
 
+#if os(iOS)
 import Foundation
 import SwiftUI
 import SwiftUI_NotificationBanner
+
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate, ObservableObject {
     
@@ -46,3 +48,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, ObservableObject {
       self.notificationWindow = notificationWindow
     }
 }
+#endif

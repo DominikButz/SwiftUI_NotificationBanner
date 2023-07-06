@@ -12,44 +12,36 @@ public struct Example: View {
     @EnvironmentObject var notificationHandler: DYNotificationHandler 
     @State private var sheetPresented: Bool = false
     
-    public init() {
-   
-    }
+    public init() {}
     
     public var body: some View {
-     
-        VStack(alignment: .center, spacing: 10) {
+        GeometryReader { proxy in
+            VStack(alignment: .center, spacing: 10) {
                 Spacer()
-
+                
                 Button(action: {
-                    notificationHandler.show(notification: DYNotification(title: "Warm reminder", message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", image: Image(systemName: "checkmark.seal.fill"), type: .info, displayDuration: 3, dismissOnTap: true, displayEdge: .leading, hapticFeedbackType: .success, tapHandler: {
-                        print("info banner tapped")
-                    }))
+
+                    notificationHandler.show(notification: self.infoNotification)
                 }, label: {
                     Text("Info Banner")
                 }).foregroundColor(.blue)
                 
                 Button(action: {
-                    notificationHandler.show(notification: DYNotification(message: "Running out of time!", type: .warning, displayDuration: 3, dismissOnTap: true, displayEdge: .top, hapticFeedbackType: .warning, tapHandler: {
-                        print("warning banner tapped")
-                    }))
+             
+                    notificationHandler.show(notification: self.warningNotification)
                 }, label: {
                     Text("Warning Status Banner")
                 }).foregroundColor(.yellow)
-
-            
+                
                 Button(action: {
-                    notificationHandler.show(notification: DYNotification(title: "Error", message: "Danger Zone! An unknown error occurred.", image: Image(systemName: "exclamationmark.triangle.fill"), type: .error, displayDuration: 2, dismissOnTap: true, displayEdge: .bottom, hapticFeedbackType: .error, tapHandler: {
-                        print("error banner tapped")
-                    }))
+                    notificationHandler.show(notification: self.errorNotification)
                 }, label: {
                     Text("Error Status Banner")
                 }).foregroundColor(.red)
-            
-            
-            
+                
                 Spacer()
-            
+                
+                #if os(iOS)
                 Button {
                     self.sheetPresented = true
                 } label: {
@@ -58,12 +50,79 @@ public struct Example: View {
                 .sheet(isPresented: $sheetPresented) {
                     SheetView().environmentObject(notificationHandler)
                 }.padding()
-
+                #endif
             }
-            .frame(width: UIScreen.main.bounds.size.width)
-
-            
+            .frame(width: proxy.size.width, height: proxy.size.height)
         }
+        
+    }
+    
+    var infoNotification: DYNotification {
+        
+        let title = "Warm reminder"
+        let message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        let image = Image(systemName: "checkmark.seal.fill")
+        let type: DYNotificationType = .info
+        let displayDuration: TimeInterval = 3
+        let dismissOnTap = true
+        let displayEdge: Edge = .leading
+        
+        #if os(iOS)
+       return DYNotification(title: title, message: message, image: image, type: type, displayDuration: displayDuration, dismissOnTap: dismissOnTap, displayEdge: displayEdge, hapticFeedbackType: .success, tapHandler: {
+            print("info banner tapped")
+        })
+        
+        #else
+        return DYNotification(title: title, message: message, image: image, type: type, displayDuration: displayDuration, dismissOnTap: dismissOnTap, displayEdge: displayEdge, tapHandler: {
+             print("info banner tapped")
+         })
+        #endif
+        
+    }
+    
+    var warningNotification: DYNotification {
+        let message = "Running out of time!"
+        let image = Image(systemName: "checkmark.seal.fill")
+        let type: DYNotificationType = .warning
+        let displayDuration: TimeInterval = 5
+        let dismissOnTap = true
+        let displayEdge: Edge = .top
+        
+        #if os(iOS)
+        return DYNotification(message: message, image: image, type: type, displayDuration: displayDuration, dismissOnTap: dismissOnTap, displayEdge: displayEdge, hapticFeedbackType: .warning, tapHandler: {
+            print("warning banner tapped")
+        })
+
+        #else
+        return DYNotification(message: message, image: image, type: type, displayDuration: displayDuration, dismissOnTap: dismissOnTap, displayEdge: displayEdge, tapHandler: {
+             print("warning banner tapped")
+         })
+        #endif
+        
+    }
+    
+    var errorNotification: DYNotification {
+        let title = "Error"
+        let message = "Danger Zone! An unknown error occurred."
+        let image = Image(systemName: "exclamationmark.triangle.fill")
+        let type: DYNotificationType = .error
+        let displayDuration: TimeInterval = 2
+        let dismissOnTap = true
+        let displayEdge: Edge = .bottom
+        
+        #if os(iOS)
+        return DYNotification(title: title, message: message, image: image, type: type, displayDuration: displayDuration, dismissOnTap: dismissOnTap, displayEdge: displayEdge, hapticFeedbackType: .error, tapHandler: {
+            print("error banner tapped")
+        })
+
+        #else
+        return DYNotification(title: title, message: message, image: image, type: type, displayDuration: displayDuration, dismissOnTap: dismissOnTap, displayEdge: displayEdge, tapHandler: {
+             print("error banner tapped")
+         })
+        #endif
+        
+    }
+
 
 }
 
@@ -75,14 +134,34 @@ struct SheetView: View {
             Text("Sheet Header").font(.title).padding()
             Spacer()
             Button(action: {
-                notificationHandler.show(notification: DYNotification(title: "Success", message: "Notification banner successfully presented above sheet!", image: Image(systemName: "checkmark.circle"), type: .success, displayDuration: 3, dismissOnTap: true, hapticFeedbackType: .success, tapHandler: {
-                    print("success banner tapped")
-                }))
+                notificationHandler.show(notification: self.successNotification)
             }, label: {
                 Text("Launch success banner above sheet!")
             }).foregroundColor(.green)
             Spacer()
         }
+    }
+    
+    var successNotification: DYNotification {
+        let title = "Success"
+        let message = "Notification banner successfully presented above sheet!"
+        let image = Image(systemName: "checkmark.circle")
+        let type: DYNotificationType = .success
+        let displayDuration: TimeInterval = 3
+        let dismissOnTap = true
+        let displayEdge: Edge = .top
+        
+        #if os(iOS)
+        return DYNotification(title: title, message: message, image: image, type: type, displayDuration: displayDuration, dismissOnTap: dismissOnTap, displayEdge: displayEdge, hapticFeedbackType: .success, tapHandler: {
+            print("success banner tapped")
+        })
+
+        #else
+        return DYNotification(title: title, message: message, image: image, type: type, displayDuration: displayDuration, dismissOnTap: dismissOnTap, displayEdge: displayEdge, tapHandler: {
+             print("success banner tapped")
+         })
+        #endif
+        
     }
 }
 

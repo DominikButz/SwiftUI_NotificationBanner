@@ -5,9 +5,10 @@
 //  Created by Federico Zanetello (www.fivestars.blog) in 2021
 //
 
+
+#if canImport(UIKit)
 import Foundation
 import UIKit
-
 /// PassThroughWindow
 public class PassThroughWindow: UIWindow {
     
@@ -21,3 +22,7 @@ public class PassThroughWindow: UIWindow {
         return rootViewController?.view == hitView ? nil : hitView
   }
 }
+
+
+
+#endif

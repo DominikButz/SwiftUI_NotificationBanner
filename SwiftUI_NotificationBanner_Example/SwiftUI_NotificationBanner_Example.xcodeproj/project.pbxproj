@@ -15,6 +15,12 @@
 		B479B7E6292224FA00C55DCC /* NotificationRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B479B7E5292224FA00C55DCC /* NotificationRootView.swift */; };
 		B479B7E829223B7500C55DCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B479B7E729223B7500C55DCC /* AppDelegate.swift */; };
 		B479B7EA29223BB200C55DCC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B479B7E929223BB200C55DCC /* SceneDelegate.swift */; };
+		B4BDB1482A541B4200558A3E /* SwiftUI_NotificationBanner_Example_macOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BDB1472A541B4200558A3E /* SwiftUI_NotificationBanner_Example_macOSApp.swift */; };
+		B4BDB14A2A541B4200558A3E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BDB1492A541B4200558A3E /* ContentView.swift */; };
+		B4BDB14C2A541B4400558A3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4BDB14B2A541B4400558A3E /* Assets.xcassets */; };
+		B4BDB14F2A541B4400558A3E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4BDB14E2A541B4400558A3E /* Preview Assets.xcassets */; };
+		B4BDB1702A5665EC00558A3E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B479B7D1291DFB6F00C55DCC /* RootView.swift */; };
+		B4BDB1742A56672100558A3E /* SwiftUI_NotificationBanner in Frameworks */ = {isa = PBXBuildFile; productRef = B4BDB1732A56672100558A3E /* SwiftUI_NotificationBanner */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +33,15 @@
 		B479B7E5292224FA00C55DCC /* NotificationRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRootView.swift; sourceTree = "<group>"; };
 		B479B7E729223B7500C55DCC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B479B7E929223BB200C55DCC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B4BDB1452A541B4200558A3E /* SwiftUI_NotificationBanner_Example_macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUI_NotificationBanner_Example_macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4BDB1472A541B4200558A3E /* SwiftUI_NotificationBanner_Example_macOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_NotificationBanner_Example_macOSApp.swift; sourceTree = "<group>"; };
+		B4BDB1492A541B4200558A3E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B4BDB14B2A541B4400558A3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B4BDB14E2A541B4400558A3E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B4BDB1502A541B4400558A3E /* SwiftUI_NotificationBanner_Example_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftUI_NotificationBanner_Example_macOS.entitlements; sourceTree = "<group>"; };
+		B4BDB1592A541B4500558A3E /* SwiftUI_NotificationBanner_Example_macOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_NotificationBanner_Example_macOSTests.swift; sourceTree = "<group>"; };
+		B4BDB1632A541B4500558A3E /* SwiftUI_NotificationBanner_Example_macOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_NotificationBanner_Example_macOSUITests.swift; sourceTree = "<group>"; };
+		B4BDB1652A541B4500558A3E /* SwiftUI_NotificationBanner_Example_macOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_NotificationBanner_Example_macOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +53,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B4BDB1422A541B4200558A3E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4BDB1742A56672100558A3E /* SwiftUI_NotificationBanner in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -46,6 +69,9 @@
 			children = (
 				B479B7DD291DFB9200C55DCC /* Packages */,
 				B479B7CE291DFB6F00C55DCC /* SwiftUI_NotificationBanner_Example */,
+				B4BDB1462A541B4200558A3E /* SwiftUI_NotificationBanner_Example_macOS */,
+				B4BDB1582A541B4500558A3E /* SwiftUI_NotificationBanner_Example_macOSTests */,
+				B4BDB1622A541B4500558A3E /* SwiftUI_NotificationBanner_Example_macOSUITests */,
 				B479B7CD291DFB6F00C55DCC /* Products */,
 				B479B7DF291DFB9E00C55DCC /* Frameworks */,
 			);
@@ -55,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				B479B7CC291DFB6F00C55DCC /* SwiftUI_NotificationBanner_Example.app */,
+				B4BDB1452A541B4200558A3E /* SwiftUI_NotificationBanner_Example_macOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,6 +123,43 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B4BDB1462A541B4200558A3E /* SwiftUI_NotificationBanner_Example_macOS */ = {
+			isa = PBXGroup;
+			children = (
+				B4BDB1472A541B4200558A3E /* SwiftUI_NotificationBanner_Example_macOSApp.swift */,
+				B4BDB1492A541B4200558A3E /* ContentView.swift */,
+				B4BDB14B2A541B4400558A3E /* Assets.xcassets */,
+				B4BDB1502A541B4400558A3E /* SwiftUI_NotificationBanner_Example_macOS.entitlements */,
+				B4BDB14D2A541B4400558A3E /* Preview Content */,
+			);
+			path = SwiftUI_NotificationBanner_Example_macOS;
+			sourceTree = "<group>";
+		};
+		B4BDB14D2A541B4400558A3E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B4BDB14E2A541B4400558A3E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B4BDB1582A541B4500558A3E /* SwiftUI_NotificationBanner_Example_macOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4BDB1592A541B4500558A3E /* SwiftUI_NotificationBanner_Example_macOSTests.swift */,
+			);
+			path = SwiftUI_NotificationBanner_Example_macOSTests;
+			sourceTree = "<group>";
+		};
+		B4BDB1622A541B4500558A3E /* SwiftUI_NotificationBanner_Example_macOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B4BDB1632A541B4500558A3E /* SwiftUI_NotificationBanner_Example_macOSUITests.swift */,
+				B4BDB1652A541B4500558A3E /* SwiftUI_NotificationBanner_Example_macOSUITestsLaunchTests.swift */,
+			);
+			path = SwiftUI_NotificationBanner_Example_macOSUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -119,6 +183,26 @@
 			productReference = B479B7CC291DFB6F00C55DCC /* SwiftUI_NotificationBanner_Example.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B4BDB1442A541B4200558A3E /* SwiftUI_NotificationBanner_Example_macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4BDB16D2A541B4500558A3E /* Build configuration list for PBXNativeTarget "SwiftUI_NotificationBanner_Example_macOS" */;
+			buildPhases = (
+				B4BDB1412A541B4200558A3E /* Sources */,
+				B4BDB1422A541B4200558A3E /* Frameworks */,
+				B4BDB1432A541B4200558A3E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftUI_NotificationBanner_Example_macOS;
+			packageProductDependencies = (
+				B4BDB1732A56672100558A3E /* SwiftUI_NotificationBanner */,
+			);
+			productName = SwiftUI_NotificationBanner_Example_macOS;
+			productReference = B4BDB1452A541B4200558A3E /* SwiftUI_NotificationBanner_Example_macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -126,11 +210,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1400;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					B479B7CB291DFB6F00C55DCC = {
 						CreatedOnToolsVersion = 14.0.1;
+					};
+					B4BDB1442A541B4200558A3E = {
+						CreatedOnToolsVersion = 14.3;
 					};
 				};
 			};
@@ -148,6 +235,7 @@
 			projectRoot = "";
 			targets = (
 				B479B7CB291DFB6F00C55DCC /* SwiftUI_NotificationBanner_Example */,
+				B4BDB1442A541B4200558A3E /* SwiftUI_NotificationBanner_Example_macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -159,6 +247,15 @@
 			files = (
 				B479B7D7291DFB7200C55DCC /* Preview Assets.xcassets in Resources */,
 				B479B7D4291DFB7200C55DCC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4BDB1432A541B4200558A3E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4BDB14F2A541B4400558A3E /* Preview Assets.xcassets in Resources */,
+				B4BDB14C2A541B4400558A3E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +271,16 @@
 				B479B7E6292224FA00C55DCC /* NotificationRootView.swift in Sources */,
 				B479B7D2291DFB6F00C55DCC /* RootView.swift in Sources */,
 				B479B7D0291DFB6F00C55DCC /* SwiftUI_NotificationBanner_ExampleApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4BDB1412A541B4200558A3E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4BDB14A2A541B4200558A3E /* ContentView.swift in Sources */,
+				B4BDB1482A541B4200558A3E /* SwiftUI_NotificationBanner_Example_macOSApp.swift in Sources */,
+				B4BDB1702A5665EC00558A3E /* RootView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +459,64 @@
 			};
 			name = Release;
 		};
+		B4BDB1672A541B4500558A3E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SwiftUI_NotificationBanner_Example_macOS/SwiftUI_NotificationBanner_Example_macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SwiftUI_NotificationBanner_Example_macOS/Preview Content\"";
+				DEVELOPMENT_TEAM = 76FXG652LY;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "me.duoyun.SwiftUI-NotificationBanner-Example-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B4BDB1682A541B4500558A3E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SwiftUI_NotificationBanner_Example_macOS/SwiftUI_NotificationBanner_Example_macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SwiftUI_NotificationBanner_Example_macOS/Preview Content\"";
+				DEVELOPMENT_TEAM = 76FXG652LY;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "me.duoyun.SwiftUI-NotificationBanner-Example-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -373,10 +538,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		B4BDB16D2A541B4500558A3E /* Build configuration list for PBXNativeTarget "SwiftUI_NotificationBanner_Example_macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4BDB1672A541B4500558A3E /* Debug */,
+				B4BDB1682A541B4500558A3E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		B479B7E0291DFB9E00C55DCC /* SwiftUI_NotificationBanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SwiftUI_NotificationBanner;
+		};
+		B4BDB1732A56672100558A3E /* SwiftUI_NotificationBanner */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SwiftUI_NotificationBanner;
 		};

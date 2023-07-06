@@ -9,14 +9,18 @@ import SwiftUI
 import SwiftUI_NotificationBanner
 
 struct RootView: View {
+    #if os(iOS)
     @EnvironmentObject var sceneDelegate: SceneDelegate
+    #endif
     @EnvironmentObject var notificationHandler:  DYNotificationHandler
     
     var body: some View {
         Example().environmentObject(notificationHandler)
+        #if os(iOS)
         .onAppear {
             sceneDelegate.notificationHandler = notificationHandler
         }
+        #endif
     }
 }
 

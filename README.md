@@ -1,4 +1,4 @@
-# SwiftUI Notification Banner (v0.2)
+# SwiftUI Notification Banner (v0.3)
 
 ## Features
 
@@ -6,6 +6,7 @@ Finally a native SwiftUI notification banner package! With SwiftUI Notification 
 
 * Attach a notificationView-modifier to the top view in your view hierarchy to make sure it will always appear on top
 * The notificationBanner closure is agnostic to what kind of View you pass in - you can use the default DYNotificationBanner or simply create your own banner view!
+* From version 0.3, the package also works natively under macOS.
 * Check out the code example below and the example project included in this package for more details.
 
 ## Installation
@@ -14,7 +15,7 @@ Finally a native SwiftUI notification banner package! With SwiftUI Notification 
 Simply copy the github link of this project into the Swift Package Manager and install it. Don't forget to add the library to your target. 
 To use the notificationView-modifier, DYNotificationBanner and DYNotificationHandler, import SwiftUI_NotificationBanner. 
 
-### Cocoapods
+### Cocoapods 
 platform :ios, '14.0'
 
 target '[project name]' do
@@ -85,6 +86,8 @@ Wherever a notification should be displayed, call the notification handler's sho
 
 ```Swift 
 
+ // The macOS DYNotification initialiser does not contain "haptic feedback type" since it is part of UIKit. 
+ 
 notificationHandler.show(notification: DYNotification(title: "Warm reminder", 
 message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", 
 image: Image(systemName: "checkmark.seal.fill"),
@@ -113,8 +116,13 @@ However, there is a clever solution - we just create another app window above th
 
 In the example project that is included in this package, I have adapted this solution to displaying notification banners - simply open the example project and copy the necessary code lines into your project. 
 
+This solution only works for iOS / iPadOS, not under macOS. 
+
 
 ## Change log
+
+#### [Version 0.3](https://github.com/DominikButz/SwiftUI_NotificationBanner/releases/tag/0.3)
+The package can be used under macOS now. 
 
 #### [Version 0.2](https://github.com/DominikButz/SwiftUI_NotificationBanner/releases/tag/0.2)
 Renamed the modifier to notificationView and the default banner view to DYNotificationBanner. Updated cornerRadius logic for leading and trailing display edge. 
