@@ -27,6 +27,7 @@ internal struct NotificationScene<N: View>: ViewModifier {
                         if let notification = self.notificationHandler.currentNotification {
                             self.notificationView(notification)
                                 .onTapGesture {
+                                    print("tapped notification banner view")
                                     if notification.dismissOnTap {
                                         self.notificationHandler.remove(notification: notification, userInitiated: true) // remove the current notfication, initiated by user
                                     }
@@ -34,6 +35,7 @@ internal struct NotificationScene<N: View>: ViewModifier {
                                 }
                                 .id(notification.id)
                                 .transition(AnyTransition.move(edge: notification.displayEdge))
+                            
                         }
                         
                         if let notification = self.notificationHandler.currentNotification, notification.displayEdge == .top {
@@ -45,7 +47,7 @@ internal struct NotificationScene<N: View>: ViewModifier {
             }
             .edgesIgnoringSafeArea(.all)
             .animation(animation, value: notificationHandler.currentNotification)
-            
+
 
     }
     

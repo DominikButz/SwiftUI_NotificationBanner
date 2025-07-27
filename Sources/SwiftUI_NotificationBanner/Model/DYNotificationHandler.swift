@@ -56,15 +56,14 @@ public class DYNotificationHandler: ObservableObject {
             }
             if operation.isCancelled == false {
                 Thread.sleep(forTimeInterval: notification.displayDuration)
-            }
-            
-            if operation.isCancelled == false {
                 DispatchQueue.main.async {
                     self.remove(notification: notification)
                 }
         
                 Thread.sleep(forTimeInterval: 1.1) // to allow the banner to disappear before next one appears
             }
+            
+       
         }
         
         self.queuedOperations[notification.id] = operation

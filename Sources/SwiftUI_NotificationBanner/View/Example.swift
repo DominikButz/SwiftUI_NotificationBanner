@@ -63,7 +63,7 @@ public struct Example: View {
         let message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
         let image = Image(systemName: "checkmark.seal.fill")
         let type: DYNotificationType = .info
-        let displayDuration: TimeInterval = 3
+        let displayDuration: TimeInterval = 10
         let dismissOnTap = true
         let displayEdge: Edge = .leading
         

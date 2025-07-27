@@ -43,6 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, ObservableObject {
       notificationViewController.view.backgroundColor = .clear
 
       let notificationWindow = PassThroughWindow(windowScene: windowScene)
+        notificationWindow.notificationHandler = notificationHandler
       notificationWindow.rootViewController = notificationViewController
       notificationWindow.isHidden = false
       self.notificationWindow = notificationWindow

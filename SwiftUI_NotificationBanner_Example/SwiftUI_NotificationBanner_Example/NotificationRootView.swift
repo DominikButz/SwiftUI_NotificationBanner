@@ -20,11 +20,13 @@ struct NotificationRootView: View {
               DYNotificationBanner(notification: notification, frameWidth: min(450, UIScreen.main.bounds.size.width))
                   .text(color: foregroundColorForNotification(type: notification.type))
                   .image(color: foregroundColorForNotification(type: notification.type))
-//                  .backgroundGradientForNotificationType(success: LinearGradient(colors: [.green.opacity(0.4), .green], startPoint: .leading, endPoint: .trailing), error: LinearGradient(colors: [.red, .red.opacity(0.3)], startPoint: .top, endPoint: .bottom))
                   .dropShadow(color: colorScheme == .light ? .gray.opacity(0.4) : .clear, radius: 5, x: 0, y: notification.displayEdge == .top ? 5 : -5)
                   .cornerRadius(self.cornerRadius(displayEdge: notification.displayEdge))
+         
               
           }).statusBarHidden(notificationHandler.currentNotification?.displayEdge == .top)
+
+     
          
     }
     
