@@ -25,9 +25,7 @@ struct NotificationRootView: View {
          
               
           }).statusBarHidden(notificationHandler.currentNotification?.displayEdge == .top)
-
-     
-         
+      
     }
     
     func foregroundColorForNotification(type: DYNotificationType)->Color {

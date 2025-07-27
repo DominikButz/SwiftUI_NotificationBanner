@@ -121,6 +121,9 @@ This solution only works for iOS / iPadOS, not under macOS.
 
 ## Change log
 
+#### [Version 0.3.1](https://github.com/DominikButz/SwiftUI_NotificationBanner/releases/tag/0.3.1)
+Bug fixes: 1) Setup with passthrough window does not block tap gesture detection any more on the  banner view. For this to work, you need to set the notification handler variable of the passthrough window in your Scene delegate (see example code). 2) If there is more than one banner in the queue, tap-dimissing the current banner will now display the following banner without waiting for the display duration of the current banner to elapse. 
+
 #### [Version 0.3](https://github.com/DominikButz/SwiftUI_NotificationBanner/releases/tag/0.3)
 The package can be used under macOS now. 
 

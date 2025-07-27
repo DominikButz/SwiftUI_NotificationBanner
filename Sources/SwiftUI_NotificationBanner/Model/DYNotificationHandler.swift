@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 
-
 /// Notification Handler
 public class DYNotificationHandler: ObservableObject {
 
@@ -19,6 +18,8 @@ public class DYNotificationHandler: ObservableObject {
     let queue: OperationQueue
     
     var queuedOperations: [String: Operation ] = [:]
+    var currentTimer: DispatchSourceTimer?
+    var currentTimerNotificationId: String?
     
     @Published public var currentNotification: DYNotification?
     
@@ -48,92 +49,68 @@ public class DYNotificationHandler: ObservableObject {
         operation.addExecutionBlock {
             DispatchQueue.main.async {
                 self.currentNotification = notification
+                self.currentTimerNotificationId = notification.id
+                
                 #if os(iOS)
                 if let hapticFeedbackType = self.currentNotification?.hapticFeedbackType {
                     self.feedbackGenerator.notificationOccurred(hapticFeedbackType)
                 }
                 #endif
+                
+                // Create and start timer for auto-dismissal
+                self.startDismissalTimer(for: notification)
             }
-            if operation.isCancelled == false {
-                Thread.sleep(forTimeInterval: notification.displayDuration)
-                DispatchQueue.main.async {
-                    self.remove(notification: notification)
-                }
-        
-                Thread.sleep(forTimeInterval: 1.1) // to allow the banner to disappear before next one appears
-            }
-            
-       
         }
         
         self.queuedOperations[notification.id] = operation
         self.queue.addOperation(operation)
+    }
+    
+    private func startDismissalTimer(for notification: DYNotification) {
+        // Cancel any existing timer
+        currentTimer?.cancel()
         
+        // Create new timer
+        let timer = DispatchSource.makeTimerSource(queue: DispatchQueue.main)
+        timer.schedule(deadline: .now() + notification.displayDuration)
         
+        timer.setEventHandler { [weak self] in
+            guard let self = self else { return }
+            
+            // Only auto-dismiss if this is still the current notification
+            if self.currentTimerNotificationId == notification.id {
+                self.remove(notification: notification, userInitiated: false)
+            }
+        }
+        
+        currentTimer = timer
+        timer.resume()
     }
     
     func remove(notification: DYNotification, userInitiated: Bool = false) {
         if self.currentNotification == notification {
             self.currentNotification = nil
+            
+            // Cancel the current timer since notification is being removed
+            if currentTimerNotificationId == notification.id {
+                currentTimer?.cancel()
+                currentTimer = nil
+                currentTimerNotificationId = nil
+            }
         }
 
         if let operation = self.queuedOperations.removeValue(forKey: notification.id) as? BlockOperation {
-            if userInitiated {
-                operation.cancel()
+            operation.cancel()
+            
+            // If user initiated dismissal, show next notification immediately (after brief animation delay)
+            // If auto-dismissal, use longer delay
+            let delay: TimeInterval = userInitiated ? 0.5 : 1.1
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                // The queue will automatically process the next operation
             }
         }
- 
     }
     
 }
-
-
-
-//public class DYNotificationHandlerOld: ObservableObject {
-//    
-//    @Published var currentNotification: DYNotification? {
-//        didSet {
-//            if currentNotification == nil {
-//                self.displayNextNotificationIfAvailable()
-//            }
-//        }
-//    }
-//    @Published var notificationQueue: Array<DYNotification> = []
-//    
-//    func add(notification: DYNotification) {
-//        
-//        if currentNotification == nil {
-//            self.currentNotification = notification
-//            self.removeCurrentNotificationIfNeeded()
-//            
-//        } else {
-//            // there is already a notification displaying
-//            notificationQueue.append(notification)
-//        }
-//        
-//    }
-//    
-//    func displayNextNotificationIfAvailable() {
-//        if let nextNotification = self.notificationQueue.first {
-//            // wait 1 sec to let previous message disappear with animation
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-//                self.currentNotification = nextNotification
-//                self.notificationQueue.removeFirst()
-//                self.removeCurrentNotificationIfNeeded()
-//            })
-//
-//        }
-//    }
-//    
-//    func removeCurrentNotificationIfNeeded() {
-//        if let duration = self.currentNotification?.displayDuration {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + duration, execute: {
-//                if self.currentNotification != nil {  // user might have removed the notification by tapping already!
-//                    self.currentNotification = nil
-//                }
-//            })
-//        }
-//    }
-//    
-//}
 

@@ -31,6 +31,7 @@ internal struct NotificationScene<N: View>: ViewModifier {
                                     if notification.dismissOnTap {
                                         self.notificationHandler.remove(notification: notification, userInitiated: true) // remove the current notfication, initiated by user
                                     }
+                                    print("calling tap handler if applicable")
                                     notification.tapHandler?()
                                 }
                                 .id(notification.id)
@@ -47,6 +48,7 @@ internal struct NotificationScene<N: View>: ViewModifier {
             }
             .edgesIgnoringSafeArea(.all)
             .animation(animation, value: notificationHandler.currentNotification)
+        
 
 
     }
